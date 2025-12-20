@@ -1,0 +1,106 @@
+.about-us {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 100px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 30px;
+}
+
+.about-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 70px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 80px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 35px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.feature-card h3 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.mission-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+}
+
+.mission-section h3 {
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.mission-section p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.9;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2.2rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-section {
+    padding: 30px;
+  }
+}
