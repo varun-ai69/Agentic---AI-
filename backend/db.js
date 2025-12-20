@@ -1,5 +1,11 @@
 const { Pool } = require("pg");
 
+function isDbConfigured() {
+  if (process.env.DATABASE_URL) return true;
+  if (process.env.PGDATABASE) return true;
+  return false;
+}
+
 function createPoolConfig() {
   const connectionString = process.env.DATABASE_URL;
 
@@ -37,6 +43,14 @@ pool.on("error", (err) => {
 });
 
 async function initDb() {
+  if (!isDbConfigured()) {
+    const err = new Error(
+      "PostgreSQL is not configured. Set DATABASE_URL (recommended) or PGDATABASE to enable database features."
+    );
+    err.code = "DB_NOT_CONFIGURED";
+    throw err;
+  }
+
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -58,4 +72,4 @@ async function initDb() {
   }
 }
 
-module.exports = { pool, initDb };
+module.exports = { pool, initDb, isDbConfigured };
