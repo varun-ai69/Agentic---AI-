@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ProcessPreview.css';
 
 function ProcessPreview() {
@@ -48,7 +49,7 @@ function ProcessPreview() {
           <motion.div className="process-step" variants={stepVariants}>
             <div className="step-number">1</div>
             <div className="step-content">
-              <h3>📝 Input Your Text</h3>
+              <h3><FontAwesomeIcon icon="fa-solid fa-file-lines" style={{marginRight: '8px'}} /> Input Your Text</h3>
               <p>Paste any educational content - articles, notes, textbooks</p>
               <motion.div
                 className="step-preview input-preview"
@@ -76,7 +77,7 @@ function ProcessPreview() {
           <motion.div className="process-step" variants={stepVariants}>
             <div className="step-number">2</div>
             <div className="step-content">
-              <h3>🤖 AI Extracts Concepts</h3>
+              <h3><FontAwesomeIcon icon="fa-solid fa-brain" style={{marginRight: '8px'}} /> AI Extracts Concepts</h3>
               <p>Hierarchical organization & key point identification</p>
               <motion.div
                 className="step-preview ai-preview"
@@ -94,7 +95,7 @@ function ProcessPreview() {
                     ease: "linear"
                   }}
                 >
-                  🧠
+                  <FontAwesomeIcon icon="fa-solid fa-brain" size="1x" color="var(--accent-primary)" />
                 </motion.div>
                 <div className="processing-dots">
                   <motion.span
@@ -126,7 +127,7 @@ function ProcessPreview() {
           <motion.div className="process-step" variants={stepVariants}>
             <div className="step-number">3</div>
             <div className="step-content">
-              <h3>📖 Review Concepts</h3>
+              <h3><FontAwesomeIcon icon="fa-solid fa-book-open" style={{marginRight: '8px'}} /> Review Concepts</h3>
               <p>Structured learning material with hierarchies</p>
               <motion.div
                 className="step-preview concepts-preview"
@@ -157,7 +158,7 @@ function ProcessPreview() {
           <motion.div className="process-step" variants={stepVariants}>
             <div className="step-number">4</div>
             <div className="step-content">
-              <h3>✍️ Take the Quiz</h3>
+              <h3><FontAwesomeIcon icon="fa-solid fa-file-pen" style={{marginRight: '8px'}} /> Take the Quiz</h3>
               <p>10 questions ranked by difficulty</p>
               <motion.div
                 className="step-preview quiz-preview"
@@ -188,8 +189,8 @@ function ProcessPreview() {
           <motion.div className="process-step" variants={stepVariants}>
             <div className="step-number">5</div>
             <div className="step-content">
-              <h3>📊 Get Results</h3>
-              <p>Detailed feedback & explanations</p>
+              <h3><FontAwesomeIcon icon="fa-solid fa-chart-line" style={{marginRight: '8px'}} /> Get Results</h3>
+              <p>Detailed feedback, explanations & performance analysis</p>
               <motion.div
                 className="step-preview results-preview"
                 whileHover={{ scale: 1.05 }}
@@ -197,7 +198,8 @@ function ProcessPreview() {
                 <motion.div
                   className="score-circle-preview"
                   animate={{
-                    rotate: [0, 360]
+                    rotate: [0, 360],
+                    scale: [1, 1.05, 1]
                   }}
                   transition={{
                     duration: 4,
@@ -205,11 +207,27 @@ function ProcessPreview() {
                     ease: "linear"
                   }}
                 >
-                  <span>85%</span>
+                  <span>95%</span>
                 </motion.div>
                 <div className="stats-preview">
-                  <div className="stat-bar correct"></div>
-                  <div className="stat-bar incorrect"></div>
+                  <motion.div 
+                    className="stat-item"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1.5, delay: 0.3 }}
+                  >
+                    <span className="stat-label">Correct</span>
+                    <div className="stat-bar correct" style={{width: '95%'}}></div>
+                  </motion.div>
+                  <motion.div 
+                    className="stat-item"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1.5, delay: 0.6 }}
+                  >
+                    <span className="stat-label">Review</span>
+                    <div className="stat-bar incorrect" style={{width: '5%'}}></div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>

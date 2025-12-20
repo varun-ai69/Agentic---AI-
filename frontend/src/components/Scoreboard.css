@@ -35,7 +35,7 @@
   background: var(--accent-gradient);
   color: white;
   margin-bottom: 25px;
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 15px 40px rgba(122, 162, 247, 0.35);
   position: relative;
   animation: scaleIn 0.5s ease-out;
 }
@@ -395,12 +395,12 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 22px rgba(122, 162, 247, 0.32);
 }
 
 .retry-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 12px 32px rgba(122, 162, 247, 0.36);
 }
 
 @media (max-width: 768px) {

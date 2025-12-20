@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AboutUs.css';
 
 function AboutUs() {
@@ -8,22 +9,22 @@ function AboutUs() {
 
   const features = [
     {
-      icon: '🎯',
+      icon: 'fa-solid fa-bullseye',
       title: 'Smart Decomposition',
       description: 'AI breaks down complex texts into digestible hierarchical concepts'
     },
     {
-      icon: '🔍',
+      icon: 'fa-solid fa-magnifying-glass',
       title: 'Intelligent Ranking',
       description: 'Questions automatically ranked by difficulty for optimal learning'
     },
     {
-      icon: '✅',
+      icon: 'fa-solid fa-circle-check',
       title: 'Self-Validation',
       description: 'Built-in logic checks ensure quiz quality and accuracy'
     },
     {
-      icon: '📈',
+      icon: 'fa-solid fa-chart-line',
       title: 'Instant Feedback',
       description: 'Detailed explanations help you understand mistakes immediately'
     }
@@ -82,7 +83,7 @@ function AboutUs() {
               }}
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 15px 40px rgba(139, 92, 246, 0.3)"
+                boxShadow: "0 15px 40px rgba(122, 162, 247, 0.25)"
               }}
               transition={{ duration: 0.3 }}
             >
@@ -91,7 +92,7 @@ function AboutUs() {
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                {feature.icon}
+                <FontAwesomeIcon icon={feature.icon} size="1x" color="var(--accent-primary)" />
               </motion.div>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faPen, faBullseye } from '@fortawesome/free-solid-svg-icons';
 import './ConceptQuiz.css';
 
 function ConceptQuiz({ concepts, quiz, onSubmit }) {
@@ -39,7 +41,7 @@ function ConceptQuiz({ concepts, quiz, onSubmit }) {
       {showExplanation && (
         <div className="concepts-section">
           <div className="section-header">
-            <h2>📖 Key Concepts Extracted</h2>
+            <h2><FontAwesomeIcon icon="fa-solid fa-book" style={{marginRight: '10px'}} /> Key Concepts Extracted</h2>
             <button 
               className="toggle-btn"
               onClick={() => setShowExplanation(false)}
@@ -78,7 +80,8 @@ function ConceptQuiz({ concepts, quiz, onSubmit }) {
           className="show-concepts-btn"
           onClick={() => setShowExplanation(true)}
         >
-          📖 Show Concepts Again
+          <FontAwesomeIcon icon="fa-solid fa-book" style={{marginRight: '8px'}} />
+          Show Concepts Again
         </button>
       )}
 
@@ -86,7 +89,7 @@ function ConceptQuiz({ concepts, quiz, onSubmit }) {
       <div className="quiz-section">
         <div className="quiz-header">
           <div>
-            <h2>✍️ Quiz Time</h2>
+            <h2><FontAwesomeIcon icon="fa-solid fa-pen-to-square" style={{marginRight: '10px'}} /> Quiz Time</h2>
             <p className="quiz-instruction">
               Answer all {quiz.length} questions below and submit to see your score!
             </p>
@@ -147,7 +150,8 @@ function ConceptQuiz({ concepts, quiz, onSubmit }) {
             onClick={handleSubmit}
             disabled={Object.keys(selectedAnswers).length < quiz.length}
           >
-            🎯 Submit Quiz & See Results
+            <FontAwesomeIcon icon={faBullseye} className="button-icon" />
+            Submit Quiz & See Results
           </button>
         </div>
       </div>

@@ -60,14 +60,16 @@ async function initDb() {
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
     `);
+    console.log("✅ Database initialized successfully");
   } catch (error) {
     if (error && error.code === "3D000") {
-      const message = `PostgreSQL database does not exist. Check your .env config (${getDbHint()}). Create the database (or change PGDATABASE/DATABASE_URL to an existing database) and try again.`;
-      const wrapped = new Error(message);
-      wrapped.cause = error;
-      throw wrapped;
+      console.warn("⚠️ Database not found. Continuing without database...");
+      return;
     }
-
+    if (error && error.code === "ECONNREFUSED") {
+      console.warn("⚠️ PostgreSQL not running. Continuing without database...");
+      return;
+    }
     throw error;
   }
 }

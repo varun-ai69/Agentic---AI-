@@ -34,8 +34,8 @@
 .features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin-bottom: 80px;
+  gap: 100px;
+  margin-bottom: 60px;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;

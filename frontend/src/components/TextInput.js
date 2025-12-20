@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TextInput.css';
 
 function TextInput({ onSubmit }) {
@@ -30,7 +31,7 @@ function TextInput({ onSubmit }) {
     <div className="text-input-container">
       <div className="input-card">
         <div className="card-header">
-          <h2>📚 Enter Educational Text</h2>
+          <h2><FontAwesomeIcon icon="fa-solid fa-book" style={{marginRight: '8px'}} /> Enter Educational Text</h2>
           <p className="description">
             Paste your educational content below. Our AI will extract key concepts, 
             organize them hierarchically, and generate a personalized quiz for you.
@@ -54,7 +55,7 @@ function TextInput({ onSubmit }) {
               <span className={`char-count ${text.length >= 50 ? 'valid' : ''}`}>
                 {text.length} / 50 characters
               </span>
-              {text.length >= 50 && <span className="valid-indicator">✓ Ready</span>}
+              {text.length >= 50 && <span className="valid-indicator"><FontAwesomeIcon icon="fa-solid fa-circle-check" style={{marginRight: '4px'}} /> Ready</span>}
             </div>
             <button 
               type="submit" 
@@ -68,7 +69,8 @@ function TextInput({ onSubmit }) {
                 </>
               ) : (
                 <>
-                  ✨ Extract & Generate Quiz
+                  <FontAwesomeIcon icon="fa-solid fa-wand-magic-sparkles" style={{marginRight: '6px'}} />
+                  Extract & Generate Quiz
                 </>
               )}
             </button>

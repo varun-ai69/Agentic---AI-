@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faCircleCheck, faCircleXmark, faBullseye, faNoteSticky, faLightbulb, faArrowRotateLeft, faTrophy, faRotateRight, faUser } from '@fortawesome/free-solid-svg-icons';
 import './Scoreboard.css';
 
 function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onReviewConcepts }) {
@@ -28,7 +30,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
   return (
     <div className="scoreboard-container">
       <div className="score-card">
-        <h2>📊 Your Results</h2>
+        <h2><FontAwesomeIcon icon="fa-solid fa-chart-bar" style={{marginRight: '10px'}} /> Your Results</h2>
         
         <div className="score-display">
           <div className={`score-circle ${scoreMessage.class}`}>
@@ -40,21 +42,21 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
 
         <div className="stats-grid">
           <div className="stat-box correct">
-            <div className="stat-icon">✅</div>
+            <div className="stat-icon"><FontAwesomeIcon icon="fa-solid fa-circle-check" color="#34d399" size="2x" /></div>
             <div className="stat-content">
               <span className="stat-label">Correct Answers</span>
               <span className="stat-value">{score}</span>
             </div>
           </div>
           <div className="stat-box incorrect">
-            <div className="stat-icon">❌</div>
+            <div className="stat-icon"><FontAwesomeIcon icon="fa-solid fa-circle-xmark" color="#ef4444" size="2x" /></div>
             <div className="stat-content">
               <span className="stat-label">Incorrect Answers</span>
               <span className="stat-value">{totalQuestions - score}</span>
             </div>
           </div>
           <div className="stat-box accuracy">
-            <div className="stat-icon">🎯</div>
+            <div className="stat-icon"><FontAwesomeIcon icon="fa-solid fa-bullseye" color="#60a5fa" size="2x" /></div>
             <div className="stat-content">
               <span className="stat-label">Accuracy</span>
               <span className="stat-value">{percentage}%</span>
@@ -66,7 +68,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
       {/* Wrong Answers Review */}
       {wrongAnswers.length > 0 && (
         <div className="review-section">
-          <h3>📝 Review Your Mistakes</h3>
+          <h3><FontAwesomeIcon icon="fa-solid fa-note-sticky" style={{marginRight: '8px'}} /> Review Your Mistakes</h3>
           <p className="review-subtitle">Learn from these {wrongAnswers.length} incorrect answer{wrongAnswers.length > 1 ? 's' : ''}</p>
           
           {quiz.map((question, index) => {
@@ -85,7 +87,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
               <div key={index} className="review-card">
                 <div className="review-header">
                   <span className="question-number">Question {index + 1}</span>
-                  <span className="wrong-badge">❌ Incorrect</span>
+                  <span className="wrong-badge"><FontAwesomeIcon icon="fa-solid fa-circle-xmark" style={{marginRight: '4px'}} /> Incorrect</span>
                 </div>
                 
                 <h4 className="review-question">{question.question}</h4>
@@ -93,7 +95,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
                 <div className="answer-comparison">
                   <div className="your-answer">
                     <div className="answer-header">
-                      <span className="answer-icon">👤</span>
+                      <FontAwesomeIcon icon={faUser} style={{marginRight: '6px', color: '#6366f1'}} />
                       <strong>Your Answer</strong>
                     </div>
                     <p className="answer-text wrong">{userAnswers[index]}</p>
@@ -101,7 +103,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
                   
                   <div className="correct-answer">
                     <div className="answer-header">
-                      <span className="answer-icon">✓</span>
+                      <FontAwesomeIcon icon="fa-solid fa-check" style={{marginRight: '6px', color: '#34d399'}} />
                       <strong>Correct Answer</strong>
                     </div>
                     <p className="answer-text correct">{correctAnswer}</p>
@@ -111,7 +113,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
                 {question.explanation && (
                   <div className="explanation">
                     <div className="explanation-header">
-                      <span className="bulb-icon">💡</span>
+                      <FontAwesomeIcon icon="fa-solid fa-lightbulb" style={{marginRight: '6px', color: '#60a5fa'}} />
                       <strong>Explanation</strong>
                     </div>
                     <p>{question.explanation}</p>
@@ -122,14 +124,15 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
           })}
 
           <button className="understand-again-btn" onClick={onReviewConcepts}>
-            🔄 Do you want to understand this topic again?
+            <FontAwesomeIcon icon="fa-solid fa-arrow-rotate-left" style={{marginRight: '8px'}} />
+            Do you want to understand this topic again?
           </button>
         </div>
       )}
 
       {wrongAnswers.length === 0 && (
         <div className="perfect-score">
-          <div className="trophy-icon">🏆</div>
+          <div className="trophy-icon"><FontAwesomeIcon icon="fa-solid fa-trophy" size="3x" color="#fbbf24" /></div>
           <h3>Perfect Score!</h3>
           <p>You answered all {totalQuestions} questions correctly. Excellent work!</p>
         </div>
@@ -137,7 +140,8 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
 
       <div className="action-buttons">
         <button className="retry-btn" onClick={onRetry}>
-          🔁 Try New Text
+          <FontAwesomeIcon icon="fa-solid fa-rotate-right" style={{marginRight: '8px'}} />
+          Try New Text
         </button>
       </div>
     </div>

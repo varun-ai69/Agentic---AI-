@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import TextInput from './components/TextInput';
 import ConceptQuiz from './components/ConceptQuiz';
@@ -7,10 +10,14 @@ import Scoreboard from './components/Scoreboard';
 import LandingPage from './components/LandingPage';
 import AboutUs from './components/AboutUs';
 import ProcessPreview from './components/ProcessPreview';
+import Login from './components/Login';
+import Register from './components/Register';
 import { generateQuiz } from './services/api';
 
+library.add(fas);
+
 function App() {
-  const [currentSection, setCurrentSection] = useState('landing'); // 'landing', 'input', 'quiz', 'scoreboard'
+  const [currentSection, setCurrentSection] = useState('landing'); // 'landing', 'login', 'register', 'input', 'quiz', 'scoreboard'
   const [quizData, setQuizData] = useState(null);
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(0);
@@ -26,12 +33,12 @@ function App() {
     setIsProcessing(true);
     
     try {
-      console.log('📤 Sending text to backend...', { textLength: text.length });
+      console.log('Sending text to backend...', { textLength: text.length });
       
       // Send user input to backend as the first request
       const data = await generateQuiz(text.trim());
       
-      console.log('✅ Received response from backend:', data);
+      console.log('Received response from backend:', data);
       
       // Map backend response to frontend structure
       setQuizData({
@@ -44,7 +51,7 @@ function App() {
       
       setCurrentSection('quiz');
     } catch (error) {
-      console.error('❌ Error processing text:', error);
+      console.error('Error processing text:', error);
       alert(error.message || 'Failed to process text. Please try again. Make sure the backend is running on http://localhost:3000');
     } finally {
       setIsProcessing(false);
@@ -92,17 +99,65 @@ function App() {
     setCurrentSection('input');
   };
 
+  const handleBackToLanding = () => {
+    setCurrentSection('landing');
+  };
+
+  const handleLoginSuccess = () => {
+    setCurrentSection('input');
+  };
+
+  const handleRegisterSuccess = () => {
+    setCurrentSection('input');
+  };
+
+  const handleLoginClick = () => {
+    setCurrentSection('login');
+  };
+
+  const handleRegisterClick = () => {
+    setCurrentSection('register');
+  };
+
+  const handleSwitchToLogin = () => {
+    setCurrentSection('login');
+  };
+
+  const handleSwitchToRegister = () => {
+    setCurrentSection('register');
+  };
+
   return (
     <div className="App">
       {currentSection === 'landing' && (
         <>
-          <LandingPage onGetStarted={handleGetStarted} />
+          <LandingPage 
+            onGetStarted={handleGetStarted}
+            onLoginClick={handleLoginClick}
+            onRegisterClick={handleRegisterClick}
+          />
           <ProcessPreview />
           <AboutUs />
         </>
       )}
 
-      {currentSection !== 'landing' && (
+      {currentSection === 'login' && (
+        <Login 
+          onLoginSuccess={handleLoginSuccess}
+          onSwitchToRegister={handleSwitchToRegister}
+          onBackToLanding={handleBackToLanding}
+        />
+      )}
+
+      {currentSection === 'register' && (
+        <Register 
+          onRegisterSuccess={handleRegisterSuccess}
+          onSwitchToLogin={handleSwitchToLogin}
+          onBackToLanding={handleBackToLanding}
+        />
+      )}
+
+      {currentSection !== 'landing' && currentSection !== 'login' && currentSection !== 'register' && (
         <>
           <header className="app-header">
             <div className="header-content">
@@ -111,7 +166,7 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                🧠 ConceptForge AI
+                <FontAwesomeIcon icon="fa-solid fa-brain" style={{marginRight: '10px'}} /> ConceptForge AI
               </motion.h1>
               <motion.p 
                 className="header-subtitle"
@@ -125,7 +180,8 @@ function App() {
                 className="back-home-btn"
                 onClick={() => setCurrentSection('landing')}
               >
-                ← Back to Home
+                <FontAwesomeIcon icon="fa-solid fa-arrow-left" style={{marginRight: '6px'}} />
+                Back to Home
               </button>
             </div>
           </header>

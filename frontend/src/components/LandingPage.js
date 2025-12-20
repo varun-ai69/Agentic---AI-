@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import './LandingPage.css';
 
-function LandingPage({ onGetStarted }) {
+function LandingPage({ onGetStarted, onLoginClick, onRegisterClick }) {
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'ConceptForge AI';
   const [isResetting, setIsResetting] = useState(false);
@@ -71,9 +73,9 @@ function LandingPage({ onGetStarted }) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <div className="feature-tag">📖 Smart Extraction</div>
-            <div className="feature-tag">🎯 Auto Quiz Generation</div>
-            <div className="feature-tag">📊 Instant Feedback</div>
+            <div className="feature-tag"><FontAwesomeIcon icon="fa-solid fa-book" style={{marginRight: '6px'}} /> Smart Extraction</div>
+            <div className="feature-tag"><FontAwesomeIcon icon="fa-solid fa-bullseye" style={{marginRight: '6px'}} /> Auto Quiz Generation</div>
+            <div className="feature-tag"><FontAwesomeIcon icon="fa-solid fa-chart-bar" style={{marginRight: '6px'}} /> Instant Feedback</div>
           </motion.div>
 
           <motion.button
@@ -82,11 +84,27 @@ function LandingPage({ onGetStarted }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(139, 92, 246, 0.6)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(122, 162, 247, 0.35)" }}
             whileTap={{ scale: 0.95 }}
           >
             Get Started →
           </motion.button>
+
+          <motion.div
+            className="auth-buttons-group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
+            <button className="auth-btn login-btn" onClick={onLoginClick}>
+              <FontAwesomeIcon icon={faUser} style={{marginRight: '6px'}} />
+              Login
+            </button>
+            <button className="auth-btn register-btn" onClick={onRegisterClick}>
+              <FontAwesomeIcon icon={faUserPlus} style={{marginRight: '6px'}} />
+              Register
+            </button>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -96,15 +114,15 @@ function LandingPage({ onGetStarted }) {
           transition={{ delay: 0.4, duration: 0.8 }}
         >
           <div className="floating-card card-1">
-            <span className="card-icon">📚</span>
+            <span className="card-icon"><FontAwesomeIcon icon="fa-solid fa-book" size="2x" /></span>
             <p>Educational Text</p>
           </div>
           <div className="floating-card card-2">
-            <span className="card-icon">🤖</span>
+            <span className="card-icon"><FontAwesomeIcon icon="fa-solid fa-robot" size="2x" /></span>
             <p>AI Processing</p>
           </div>
           <div className="floating-card card-3">
-            <span className="card-icon">✨</span>
+            <span className="card-icon"><FontAwesomeIcon icon="fa-solid fa-wand-magic-sparkles" size="2x" /></span>
             <p>Quiz Ready!</p>
           </div>
         </motion.div>
