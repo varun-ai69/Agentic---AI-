@@ -16,6 +16,29 @@ If JSON is requested, return valid JSON only.
  */
 async function callGemini(userPrompt) {
   try {
+    // Get API key and client dynamically
+    const apiKey = getApiKey();
+    
+    // Validate API key
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY is not configured. Please add it to backend/.env file");
+    }
+    
+    if (apiKey.trim() === '' || apiKey === 'your_api_key_here' || apiKey === 'your_actual_api_key_here') {
+      throw new Error("GEMINI_API_KEY is set to a placeholder value. Please replace it with your actual API key in backend/.env file");
+    }
+    
+    // Basic validation - Gemini API keys typically start with "AI" or are longer strings
+    if (apiKey.length < 20) {
+      console.warn("⚠️ WARNING: API key seems too short. Please verify your GEMINI_API_KEY is correct.");
+    }
+
+    const client = getClient();
+
+    // Use gemini-pro as default (most stable and widely available)
+    // Can be overridden with GEMINI_MODEL environment variable
+    // Alternative models: "gemini-1.5-pro", "gemini-1.5-flash" (if available in your region)
+    const modelName = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
     const model = client.getGenerativeModel({
       model: "gemini-3-flash-preview"
     });
