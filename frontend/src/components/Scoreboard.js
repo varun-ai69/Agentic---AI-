@@ -3,7 +3,18 @@ import './Scoreboard.css';
 
 function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onReviewConcepts }) {
   const percentage = ((score / totalQuestions) * 100).toFixed(1);
-  const wrongAnswers = quiz.filter((q, index) => userAnswers[index] !== q.correctAnswer);
+  
+  const wrongAnswers = quiz.filter((q, index) => {
+    const correctAnswer = typeof q.correctAnswer === 'string' 
+      ? q.correctAnswer 
+      : q.correct_answer || q.correctAnswer;
+    const userAnswer = userAnswers[index];
+    
+    const normalizedCorrect = correctAnswer?.trim().toLowerCase() || '';
+    const normalizedUser = userAnswer?.trim().toLowerCase() || '';
+    
+    return normalizedUser !== normalizedCorrect;
+  });
 
   const getScoreMessage = () => {
     if (percentage >= 90) return { text: 'Outstanding! You\'ve mastered this topic!', class: 'excellent' };
@@ -59,7 +70,15 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
           <p className="review-subtitle">Learn from these {wrongAnswers.length} incorrect answer{wrongAnswers.length > 1 ? 's' : ''}</p>
           
           {quiz.map((question, index) => {
-            const isWrong = userAnswers[index] !== question.correctAnswer;
+            const correctAnswer = typeof question.correctAnswer === 'string' 
+              ? question.correctAnswer 
+              : question.correct_answer || question.correctAnswer;
+            const userAnswer = userAnswers[index];
+            
+            const normalizedCorrect = correctAnswer?.trim().toLowerCase() || '';
+            const normalizedUser = userAnswer?.trim().toLowerCase() || '';
+            
+            const isWrong = normalizedUser !== normalizedCorrect;
             if (!isWrong) return null;
 
             return (
@@ -85,7 +104,7 @@ function Scoreboard({ score, totalQuestions, quiz, userAnswers, onRetry, onRevie
                       <span className="answer-icon">✓</span>
                       <strong>Correct Answer</strong>
                     </div>
-                    <p className="answer-text correct">{question.correctAnswer}</p>
+                    <p className="answer-text correct">{correctAnswer}</p>
                   </div>
                 </div>
 

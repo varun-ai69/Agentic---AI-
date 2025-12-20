@@ -64,11 +64,11 @@ function ProcessPreview() {
             </div>
             <motion.div
               className="step-arrow"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 0.5 }}
             >
-              →
+              ↓
             </motion.div>
           </motion.div>
 
@@ -114,11 +114,11 @@ function ProcessPreview() {
             </div>
             <motion.div
               className="step-arrow"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 0.8 }}
             >
-              →
+              ↓
             </motion.div>
           </motion.div>
 
@@ -145,11 +145,11 @@ function ProcessPreview() {
             </div>
             <motion.div
               className="step-arrow"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 1.1 }}
             >
-              →
+              ↓
             </motion.div>
           </motion.div>
 
@@ -176,11 +176,11 @@ function ProcessPreview() {
             </div>
             <motion.div
               className="step-arrow"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 1.4 }}
             >
-              →
+              ↓
             </motion.div>
           </motion.div>
 

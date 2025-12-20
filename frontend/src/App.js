@@ -7,6 +7,7 @@ import Scoreboard from './components/Scoreboard';
 import LandingPage from './components/LandingPage';
 import AboutUs from './components/AboutUs';
 import ProcessPreview from './components/ProcessPreview';
+import { generateQuiz } from './services/api';
 
 function App() {
   const [currentSection, setCurrentSection] = useState('landing'); // 'landing', 'input', 'quiz', 'scoreboard'
@@ -16,21 +17,20 @@ function App() {
 
   const handleTextSubmit = async (text) => {
     try {
-      // API call to backend for processing text
-      const response = await fetch('YOUR_BACKEND_API/process-text', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: text }),
+      const data = await generateQuiz(text);
+      
+      // Map backend response to frontend structure
+      setQuizData({
+        hierarchy: data.hierarchy,
+        concepts: data.concepts,
+        quiz: data.quiz,
+        answers: data.answers,
+        explanation: data.explanation
       });
-
-      const data = await response.json();
-      setQuizData(data);
       setCurrentSection('quiz');
     } catch (error) {
       console.error('Error processing text:', error);
-      alert('Failed to process text. Please try again.');
+      alert('Failed to process text. Please try again. Make sure the backend is running on http://localhost:3000');
     }
   };
 
@@ -40,7 +40,18 @@ function App() {
     // Calculate score
     let correctCount = 0;
     quizData.quiz.forEach((question, index) => {
-      if (answers[index] === question.correctAnswer) {
+      // Handle both string and object correct answers
+      const correctAnswer = typeof question.correctAnswer === 'string' 
+        ? question.correctAnswer 
+        : question.correctAnswer || question.correct_answer;
+      
+      const userAnswer = answers[index];
+      
+      // Normalize answers for comparison
+      const normalizedCorrect = correctAnswer?.trim().toLowerCase() || '';
+      const normalizedUser = userAnswer?.trim().toLowerCase() || '';
+      
+      if (normalizedUser === normalizedCorrect) {
         correctCount++;
       }
     });
