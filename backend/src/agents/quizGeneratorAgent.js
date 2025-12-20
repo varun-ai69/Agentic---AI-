@@ -30,7 +30,13 @@ RULES:
 - NO markdown
 - Questions must be conceptually correct
 - Difficulty must be logically assigned
-
+- All questions must be MCQ
+- All questions must have 4 options
+- Give at list 10 questions in total
+- Give 4 questions in each difficulty level
+- Give 4 question in each difficulty level
+- Give 2 question in each difficulty level
+- Not give more than 10 questions in Total 
 OUTPUT FORMAT:
 {
   "easy": [
@@ -45,14 +51,16 @@ OUTPUT FORMAT:
     {
       "id": "M1",
       "question": "",
-      "type": "short"
+      "type": "mcq"
+      "options": []
     }
   ],
   "hard": [
     {
       "id": "H1",
       "question": "",
-      "type": "short"
+      "type": "mcq"
+      "options": []
     }
   ]
 }

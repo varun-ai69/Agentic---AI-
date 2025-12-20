@@ -67,7 +67,7 @@ async function callGemini(userPrompt) {
     // Use gemini-pro as default (most stable and widely available)
     // Can be overridden with GEMINI_MODEL environment variable
     // Alternative models: "gemini-1.5-pro", "gemini-1.5-flash" (if available in your region)
-    const modelName = process.env.GEMINI_MODEL || "gemini-pro";
+    const modelName = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
     const model = client.getGenerativeModel({
       model: modelName
     });
