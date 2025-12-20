@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './LandingPage.css';
 
 function LandingPage({ onGetStarted }) {
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = 'ConceptForge AI';
+  const [isResetting, setIsResetting] = useState(false);
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let timeout;
+
+    const animateText = () => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+        timeout = setTimeout(animateText, 80);
+      } else {
+        // Reset after 2 seconds and loop infinitely
+        timeout = setTimeout(() => {
+          currentIndex = 0;
+          setDisplayedText('');
+          animateText();
+        }, 2000);
+      }
+    };
+
+    animateText();
+
+    return () => clearTimeout(timeout);
+  }, [fullText]);
+
   return (
     <div className="landing-page">
       <div className="hero-section">
@@ -18,7 +46,14 @@ function LandingPage({ onGetStarted }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            🧠 ConceptForge AI
+            {displayedText}
+            <motion.span
+              className="typing-cursor"
+              animate={{ opacity: [1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.8 }}
+            >
+              |
+            </motion.span>
           </motion.h1>
           
           <motion.p

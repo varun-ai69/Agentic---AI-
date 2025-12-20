@@ -34,6 +34,10 @@ export async function generateQuiz(text) {
     };
   } catch (error) {
     console.error('API Error:', error);
+    // Handle network errors (backend not running, CORS issues, etc.)
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
+      throw new Error('Unable to connect to backend server. Please make sure the backend is running on http://localhost:3000');
+    }
     throw error;
   }
 }

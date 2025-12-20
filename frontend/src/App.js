@@ -14,23 +14,40 @@ function App() {
   const [quizData, setQuizData] = useState(null);
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleTextSubmit = async (text) => {
+    // Validate input
+    if (!text || text.trim().length < 50) {
+      alert('Please enter at least 50 characters of educational text.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
     try {
-      const data = await generateQuiz(text);
+      console.log('📤 Sending text to backend...', { textLength: text.length });
+      
+      // Send user input to backend as the first request
+      const data = await generateQuiz(text.trim());
+      
+      console.log('✅ Received response from backend:', data);
       
       // Map backend response to frontend structure
       setQuizData({
-        hierarchy: data.hierarchy,
-        concepts: data.concepts,
-        quiz: data.quiz,
-        answers: data.answers,
-        explanation: data.explanation
+        hierarchy: data.hierarchy || [],
+        concepts: data.concepts || [],
+        quiz: data.quiz || [],
+        answers: data.answers || [],
+        explanation: data.explanation || {}
       });
+      
       setCurrentSection('quiz');
     } catch (error) {
-      console.error('Error processing text:', error);
-      alert('Failed to process text. Please try again. Make sure the backend is running on http://localhost:3000');
+      console.error('❌ Error processing text:', error);
+      alert(error.message || 'Failed to process text. Please try again. Make sure the backend is running on http://localhost:3000');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -115,7 +132,7 @@ function App() {
 
           <main className="app-main">
             {currentSection === 'input' && (
-              <TextInput onSubmit={handleTextSubmit} />
+              <TextInput onSubmit={handleTextSubmit} isLoading={isProcessing} />
             )}
 
             {currentSection === 'quiz' && quizData && (
