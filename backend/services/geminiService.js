@@ -1,35 +1,6 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-/**
- * Gemini Service
- * 
- * IMPORTANT: Make sure you have a .env file in the backend folder with:
- * GEMINI_API_KEY=your_actual_api_key_here
- * 
- * Get your API key from: https://makersuite.google.com/app/apikey
- */
-
-// Get API key dynamically to ensure dotenv has loaded
-function getApiKey() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  
-  if (!apiKey) {
-    console.warn("⚠️ WARNING: GEMINI_API_KEY not found in environment variables!");
-    console.warn("⚠️ Make sure you have created a .env file in the backend folder with:");
-    console.warn("⚠️ GEMINI_API_KEY=your_actual_api_key_here");
-  }
-  
-  return apiKey;
-}
-
-// Initialize client lazily to ensure API key is available
-function getClient() {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is not configured. Please add it to backend/.env file");
-  }
-  return new GoogleGenerativeAI(apiKey);
-}
+const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const SYSTEM_PROMPT = `
 You are an expert educational assistant.
@@ -67,9 +38,9 @@ async function callGemini(userPrompt) {
     // Use gemini-pro as default (most stable and widely available)
     // Can be overridden with GEMINI_MODEL environment variable
     // Alternative models: "gemini-1.5-pro", "gemini-1.5-flash" (if available in your region)
-    const modelName = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+    const modelName = process.env.GEMINI_MODEL || "gemini-pro";
     const model = client.getGenerativeModel({
-      model: modelName
+      model: "gemini-3-flash-preview"
     });
 
     // Combine system + user prompt (Gemini style)
@@ -81,7 +52,7 @@ async function callGemini(userPrompt) {
     return response.text();
 
   } catch (error) {
-    console.error("❌ Gemini API Error:", error.message);
+    console.error("❌ Gemini API Error:", error);
     throw error;
   }
 }

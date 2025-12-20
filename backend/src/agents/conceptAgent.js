@@ -48,11 +48,7 @@ TEXT:
     try {
       rawResponse = await callGemini(prompt);
     } catch (err) {
-      console.error(`❌ Gemini call failed on chunk ${i}:`, err.message);
-      // If this is the first chunk and it fails, log a more helpful error
-      if (i === 0 && chunks.length === 1) {
-        console.error("⚠️ This might be due to an invalid model name or API key. Check your GEMINI_API_KEY and model configuration.");
-      }
+      console.error("❌ Gemini call failed on chunk", i);
       continue;
     }
 
