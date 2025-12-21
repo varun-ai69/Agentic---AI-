@@ -1,6 +1,7 @@
-ConceptForge AI
+ # ConceptForge AI
 
-Autonomous Knowledge Extractor & Quiz Builder
+(Autonomous Knowledge Extractor & Quiz Builder)
+
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ef8a09d8-7681-4197-ac61-c1addec04fc0" /> <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/59bcab4c-a144-460f-9321-0ffb64e557fc" />
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/2224bbd8-1414-47d7-9980-6ed1bd1cc7b4" /> <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/1ac91671-f26a-4d35-ba36-e48bc250b4f9" />
 
