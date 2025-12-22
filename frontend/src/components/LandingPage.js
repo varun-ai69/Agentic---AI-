@@ -6,7 +6,7 @@ import './LandingPage.css';
 
 function LandingPage({ onGetStarted, onLoginClick, onRegisterClick }) {
   const [displayedText, setDisplayedText] = useState('');
-  const fullText = 'ConceptForge AI';
+  const fullText = 'LearnForge AI';
   const [isResetting, setIsResetting] = useState(false);
 
   useEffect(() => {

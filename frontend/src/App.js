@@ -166,7 +166,7 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <FontAwesomeIcon icon="fa-solid fa-brain" style={{marginRight: '10px'}} /> ConceptForge AI
+                <FontAwesomeIcon icon="fa-solid fa-brain" style={{marginRight: '10px'}} /> LearnForge AI
               </motion.h1>
               <motion.p 
                 className="header-subtitle"

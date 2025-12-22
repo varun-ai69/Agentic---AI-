@@ -44,7 +44,7 @@ function AboutUs() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
           transition={{ duration: 0.6 }}
         >
-          About ConceptForge AI
+          About LearnForge AI
         </motion.h2>
 
         <motion.p

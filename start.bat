@@ -32,14 +32,14 @@ REM Wait a bit for backend to start
 timeout /t 3 /nobreak >nul
 
 echo [2/2] Starting Frontend Server...
-start "Frontend Server - Port 3001" cmd /k "title Frontend Server && cd /d %~dp0frontend && echo ======================================== && echo   Frontend Server && echo ======================================== && echo   Running on: http://localhost:3001 && echo   Press Ctrl+C to stop && echo ======================================== && echo. && npm start"
+start "Frontend Server - Port 4000" cmd /k "title Frontend Server && cd /d %~dp0frontend && echo ======================================== && echo   Frontend Server && echo ======================================== && echo   Running on: http://localhost:3001 && echo   Press Ctrl+C to stop && echo ======================================== && echo. && npm start"
 
 echo.
 echo ========================================
 echo   Both servers are starting...
 echo ========================================
 echo   Backend:  http://localhost:3000
-echo   Frontend: http://localhost:3001
+echo   Frontend: http://localhost:4000
 echo.
 echo   Two terminal windows have been opened
 echo   Close those windows to stop the servers
