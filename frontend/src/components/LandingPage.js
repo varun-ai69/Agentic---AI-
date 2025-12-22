@@ -1,56 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import './LandingPage.css';
-import BlobCursor from './Blobcursor.js';
+import BlurText from './BlurText';
 
-<BlobCursor
-  blobType="circle"
-  fillColor="#5227FF"
-  trailCount={3}
-  sizes={[60, 125, 75]}
-  innerSizes={[20, 35, 25]}
-  innerColor="rgba(255,255,255,0.8)"
-  opacities={[0.6, 0.6, 0.6]}
-  shadowColor="rgba(0,0,0,0.75)"
-  shadowBlur={5}
-  shadowOffsetX={10}
-  shadowOffsetY={10}
-  filterStdDeviation={30}
-  useFilter={true}
-  fastDuration={0.1}
-  slowDuration={0.5}
-  zIndex={100}
-/>
 function LandingPage({ onGetStarted, onLoginClick, onRegisterClick }) {
-  const [displayedText, setDisplayedText] = useState('');
-  const fullText = 'LearnForge AI';
-  const [isResetting, setIsResetting] = useState(false);
-
-  useEffect(() => {
-    let currentIndex = 0;
-    let timeout;
-
-    const animateText = () => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-        timeout = setTimeout(animateText, 80);
-      } else {
-        // Reset after 2 seconds and loop infinitely
-        timeout = setTimeout(() => {
-          currentIndex = 0;
-          setDisplayedText('');
-          animateText();
-        }, 2000);
-      }
-    };
-
-    animateText();
-
-    return () => clearTimeout(timeout);
-  }, [fullText]);
+  const handleLoop = (loopCount) => {
+    console.log(`Animation loop ${loopCount} completed`);
+  };
 
   return (
     <div className="landing-page">
@@ -67,14 +25,16 @@ function LandingPage({ onGetStarted, onLoginClick, onRegisterClick }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              {displayedText}
-              <motion.span
-                className="typing-cursor"
-                animate={{ opacity: [1, 0] }}
-                transition={{ repeat: Infinity, duration: 0.8 }}
-              >
-                |
-              </motion.span>
+              <BlurText
+                text="LearnForge AI"
+                delay={100}  // Slightly slower than before
+                animateBy="letters"  // Changed from "words" to "letters"
+                direction="top"
+                loop={true}
+                onLoop={handleLoop}
+                className="hero-title-text"
+                stepDuration={0.5}  // Slower animation
+              />
             </motion.h1>
             
             <motion.p

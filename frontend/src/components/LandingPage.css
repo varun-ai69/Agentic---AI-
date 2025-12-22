@@ -36,13 +36,30 @@
 .hero-title {
   font-size: 4rem;
   font-weight: 900;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 25px;
   line-height: 1.2;
   min-height: 5rem;
+  display: inline-block;
+}
+
+.hero-title .blur-text {
+  background: linear-gradient(90deg, 
+    #8b5cf6, #a78bfa, #c084fc, #d8b4fe, #e9d5ff, #c084fc, #a78bfa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  background-size: 300% 300%;
+  animation: gradient 8s ease infinite;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .typing-cursor {
