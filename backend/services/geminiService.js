@@ -21,7 +21,7 @@ async function callGemini(userPrompt) {
     });
 
     // Combine system + user prompt (Gemini style)
-    const finalPrompt = ${SYSTEM_PROMPT}\n\n${userPrompt};
+    const finalPrompt = `${SYSTEM_PROMPT},\n\n${userPrompt}`;
 
     const result = await model.generateContent(finalPrompt);
     const response = await result.response;

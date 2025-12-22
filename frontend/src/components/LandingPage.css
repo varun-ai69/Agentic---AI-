@@ -17,7 +17,7 @@
   background: radial-gradient(circle, rgba(122, 162, 247, 0.12) 0%, transparent 70%);
   top: -200px;
   right: -200px;
-  pointer-events: none;
+  
 }
 
 .hero-section {
