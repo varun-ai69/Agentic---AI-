@@ -129,23 +129,24 @@ function App() {
 
   return (
     <>
-      <BlobCursor blobType="circle"
-        fillColor="linear-gradient(135deg, #9f2bd4 0%, #7b1fa2 50%, #4a148c 100%)"
-        trailCount={3}
-        sizes={[45, 90, 35, 60]}
-        innerSizes={[18, 38, 22, 28]}
-        innerColor="radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 70%)"
-
-        opacities={[0.6, 0.6, 0.6]}
-        shadowColor="radial-gradient(circle, rgba(159,43,212,0.9) 0%, rgba(120,31,162,0.6) 70%)"
-        shadowBlur={12}
-        shadowOffsetX={8}
-        shadowOffsetY={8}
-        filterStdDeviation={35}
-        useFilter={true}
-        fastDuration={0.08}
-        slowDuration={0.6}
-        zIndex={9999} />
+      <BlobCursor
+ blobType="circle"
+  fillColor="#7b1fa2"
+  trailCount={3}
+  sizes={[50, 80, 30]}
+  innerSizes={[20, 35, 25]}
+  innerColor="#ffffff"
+  opacities={[0.75, 0.6, 0.45]}
+  shadowColor="#4a148c"
+  shadowBlur={8}
+  shadowOffsetX={4}
+  shadowOffsetY={4}
+  filterStdDeviation={20}
+  useFilter={true}
+  fastDuration={0.12}
+  slowDuration={0.6}
+  zIndex={9999}
+/>
 
       {<div className="App">
         {currentSection === 'landing' && (
