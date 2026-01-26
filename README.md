@@ -1,4 +1,4 @@
- # ConceptForge AI
+# ConceptForge AI
 
 (Autonomous Knowledge Extractor & Quiz Builder)
 
@@ -7,7 +7,7 @@
 
  
   
- Overview
+Overview
 
 ConceptForge AI is a fully autonomous, multi-agent AI system that transforms long educational text into:
 
